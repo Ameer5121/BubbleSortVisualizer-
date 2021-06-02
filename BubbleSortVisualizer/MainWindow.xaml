@@ -1,0 +1,66 @@
+﻿<Window x:Class="BubbleSortVisualizer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BubbleSortVisualizer"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="347"
+        Width="674"
+        TextElement.Foreground="{DynamicResource MaterialDesignDarkBackground}"
+        Background="{DynamicResource MaterialDesignDarkBackground}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        MouseDown="Window_MouseDown">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Border Background="#FF2C2B2B" Height="30" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0">
+            <DockPanel LastChildFill="True">
+                <Button BorderBrush="Transparent" Style="{StaticResource ExitButton}" DockPanel.Dock="Right" Click="Exit_Click" Cursor="Hand" Width="54" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <Image Source="/Resources/Exit.png" Height="32" Width="49"></Image>
+                </Button>
+            </DockPanel>
+        </Border>
+
+        <!--#FF3A3838-->
+        <ItemsControl ItemsSource="{Binding RandomizedNumbers}" Background="#FF3A3838" Grid.Column="1" Grid.Row="1" Width="300" Grid.RowSpan="5">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="{Binding RowAmount}" Columns="{Binding ColumnAmount}" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" Foreground="White"></TextBlock>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBlock Text="Amount Of Columns:"  Foreground="Silver" Grid.Row="2" TextAlignment="Center"></TextBlock>
+        <TextBlock Text="Speed" Grid.Row="4" Foreground="Silver" TextAlignment="Center"></TextBlock>
+        <TextBlock Text="Amount Of Rows" Grid.Row="3" Foreground="Silver" TextAlignment="Center"></TextBlock>
+        
+        <Slider IsEnabled="{Binding ControlsEnabled}" x:Name="ColumnSlider" Value="{Binding ColumnAmount, Mode=TwoWay}" Grid.Row="2" TickFrequency="1" Maximum="10" Minimum="2" VerticalAlignment="Center" Style="{DynamicResource MaterialDesignDiscreteHorizontalSlider}"></Slider>
+        <Slider IsEnabled="{Binding ControlsEnabled}" x:Name="RowSlider" Value="{Binding RowAmount, Mode=TwoWay}" Grid.Row="3" TickFrequency="1" Maximum="10" Minimum="1" VerticalAlignment="Center" Style="{DynamicResource MaterialDesignDiscreteHorizontalSlider}"></Slider>
+        <Slider Grid.Row="4" Value="{Binding Speed, Mode=TwoWay}" TickFrequency="0.1" Maximum="2" Minimum="0.1" VerticalAlignment="Center" Style="{DynamicResource MaterialDesignDiscreteHorizontalSlider}"></Slider>
+        <Button IsEnabled="{Binding ControlsEnabled}" Background="#FF433F3F" VerticalAlignment="Top" Command="{Binding StartSort}" Content="Start" Foreground="Silver" Grid.Row="5" Width="120"></Button>
+    </Grid>
+</Window>
