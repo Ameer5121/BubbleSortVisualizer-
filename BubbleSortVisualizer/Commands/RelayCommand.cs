@@ -24,17 +24,8 @@ namespace BubbleSortVisualizer.Commands
             this.execute = execute;
             this.canExecute = canExecute;
         }
-        public event EventHandler CanExecuteChanged
-        {
-            add
-            {
-                CommandManager.RequerySuggested += value;
-            }
-            remove
-            {
-                CommandManager.RequerySuggested -= value;
-            }
-        }
+        public event EventHandler CanExecuteChanged;
+      
 
 
         public bool CanExecute(object parameter)
@@ -45,6 +36,7 @@ namespace BubbleSortVisualizer.Commands
         public async void Execute(object parameter)
         {
             await this.execute();
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

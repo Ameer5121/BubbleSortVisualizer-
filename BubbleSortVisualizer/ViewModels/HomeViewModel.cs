@@ -13,7 +13,7 @@ namespace BubbleSortVisualizer.ViewModels
     {
         private int _columnAmount = 2;
         private int _rowAmount = 1;
-        private double _speed = 0.1;
+        private int _speed = 1;
         private bool _controlsEnabled = true;
         public ObservableCollection<int> RandomizedNumbers { get; set; }
         public int ColumnAmount
@@ -26,7 +26,7 @@ namespace BubbleSortVisualizer.ViewModels
             get => _rowAmount;
             set => SetPropertyValue(ref _rowAmount, value);
         }
-        public double Speed
+        public int Speed
         {
             get => _speed;
             set => SetPropertyValue(ref _speed, value);
@@ -69,7 +69,7 @@ namespace BubbleSortVisualizer.ViewModels
             {
                 for (int j = i + 1; j < collection.Count(); j++)
                 {
-                    await Task.Delay(TimeSpan.FromSeconds(Speed));
+                    await Task.Delay(TimeSpan.FromMilliseconds(Speed));
                     if (collection[i] > collection[j])
                     {
                         var temp = collection[i];

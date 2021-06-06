@@ -57,10 +57,11 @@
         <TextBlock Text="Amount Of Columns:"  Foreground="Silver" Grid.Row="2" TextAlignment="Center"></TextBlock>
         <TextBlock Text="Speed" Grid.Row="4" Foreground="Silver" TextAlignment="Center"></TextBlock>
         <TextBlock Text="Amount Of Rows" Grid.Row="3" Foreground="Silver" TextAlignment="Center"></TextBlock>
-        
+        <TextBlock Text="In Milliseconds" Grid.Row="4" Foreground="Silver" TextAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+
         <Slider IsEnabled="{Binding ControlsEnabled}" x:Name="ColumnSlider" Value="{Binding ColumnAmount, Mode=TwoWay}" Grid.Row="2" TickFrequency="1" Maximum="10" Minimum="2" VerticalAlignment="Center" Style="{DynamicResource MaterialDesignDiscreteHorizontalSlider}"></Slider>
         <Slider IsEnabled="{Binding ControlsEnabled}" x:Name="RowSlider" Value="{Binding RowAmount, Mode=TwoWay}" Grid.Row="3" TickFrequency="1" Maximum="10" Minimum="1" VerticalAlignment="Center" Style="{DynamicResource MaterialDesignDiscreteHorizontalSlider}"></Slider>
-        <Slider Grid.Row="4" Value="{Binding Speed, Mode=TwoWay}" TickFrequency="0.1" Maximum="2" Minimum="0.1" VerticalAlignment="Center" Style="{DynamicResource MaterialDesignDiscreteHorizontalSlider}"></Slider>
+        <Slider Grid.Row="4" Value="{Binding Speed, Mode=TwoWay}" Maximum="1000" Minimum="1" VerticalAlignment="Center" Style="{DynamicResource MaterialDesignDiscreteHorizontalSlider}"></Slider>
         <Button IsEnabled="{Binding ControlsEnabled}" Background="#FF433F3F" VerticalAlignment="Top" Command="{Binding StartSort}" Content="Start" Foreground="Silver" Grid.Row="5" Width="120"></Button>
     </Grid>
 </Window>
